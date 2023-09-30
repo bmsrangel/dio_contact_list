@@ -31,4 +31,32 @@ class SqfliteContactsRepositoryImpl implements ContactsRepository {
     final contactModel = ContactModel.fromJson(newContact.first);
     return contactModel;
   }
+
+  @override
+  Future<void> updateOne(ContactModel contactModel) async {
+    await _db.update(
+      'contacts',
+      contactModel.toJson(),
+      where: 'id = ?',
+      whereArgs: [
+        contactModel.id,
+      ],
+    );
+  }
+
+  @override
+  Future<ContactModel?> findById(Object id) async {
+    final results = await _db.query(
+      'contacts',
+      where: 'id = ?',
+      whereArgs: [
+        id as int,
+      ],
+    );
+    if (results.isNotEmpty) {
+      return ContactModel.fromJson(results.first);
+    } else {
+      return null;
+    }
+  }
 }

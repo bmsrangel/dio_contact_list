@@ -2,10 +2,10 @@ import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart';
 
-@Singleton()
-class SqfliteDatabase {
-  @FactoryMethod(preResolve: true)
-  static Future<Database> openDb() async {
+@module
+abstract class SqfliteDatabase {
+  @preResolve
+  Future<Database> openDb() async {
     final databaseFolder = await getDatabasesPath();
     final databasePath = path.join(databaseFolder, 'contacts.sqlite');
     final database = await openDatabase(
