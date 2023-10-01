@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 
+import '../generated/l10n.dart';
 import 'core/blocs/contacts/contacts_bloc.dart';
 import 'core/blocs/single_contact/single_contact_bloc.dart';
 import 'core/models/contact_model.dart';
@@ -19,10 +21,13 @@ class AppWidget extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3a94d1)),
         useMaterial3: true,
       ),
-      // home: HomePage(
-      //   title: 'Contacts List App',
-      //   contactsBloc: GetIt.I.get(),
-      // ),
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       initialRoute: HomePage.route,
       routes: {
         HomePage.route: (context) => HomePage(
