@@ -6,9 +6,10 @@ import '../generated/l10n.dart';
 import 'core/blocs/contacts/contacts_bloc.dart';
 import 'core/blocs/single_contact/single_contact_bloc.dart';
 import 'core/models/contact_model.dart';
-import 'pages/edit_contact_page.dart';
-import 'pages/home_page.dart';
-import 'pages/single_contact_page.dart';
+import 'pages/edit_contact_page/edit_contact_controller.dart';
+import 'pages/edit_contact_page/edit_contact_page.dart';
+import 'pages/home/home_page.dart';
+import 'pages/single_contact_page/single_contact_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -52,6 +53,7 @@ class AppWidget extends StatelessWidget {
           return EditContactPage(
             title: S.of(context).editContactPageTitle,
             contactModel: contactModel,
+            controller: GetIt.I.get<EditContactController>(),
           );
         },
       },

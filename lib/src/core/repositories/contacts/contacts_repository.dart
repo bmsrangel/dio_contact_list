@@ -6,4 +6,5 @@ abstract interface class ContactsRepository {
   Future<ContactModel?> findById(Object id);
   Future<ContactModel> insertOne(NewContactDTO newContactDTO);
   Future<void> updateOne(ContactModel contactModel);
+  Future<void> deleteOne(Object id);
 }

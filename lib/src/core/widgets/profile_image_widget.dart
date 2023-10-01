@@ -24,9 +24,10 @@ class ProfileImageWidget extends StatelessWidget {
           onTap: onPressed,
           child: CircleAvatar(
             radius: radius,
-            backgroundImage:
-                imagePath != null ? FileImage(File(imagePath!)) : null,
-            child: imagePath == null
+            backgroundImage: imagePath != null && imagePath!.isNotEmpty
+                ? FileImage(File(imagePath!))
+                : null,
+            child: imagePath == null || imagePath!.isEmpty
                 ? Icon(
                     Icons.person,
                     size: radius,

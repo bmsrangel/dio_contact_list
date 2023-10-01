@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../core/blocs/single_contact/single_contact_bloc.dart';
-import '../core/models/contact_model.dart';
-import '../core/widgets/profile_image_widget.dart';
-import 'edit_contact_page.dart';
+import '../../../generated/l10n.dart';
+import '../../core/blocs/single_contact/single_contact_bloc.dart';
+import '../../core/models/contact_model.dart';
+import '../../core/widgets/profile_image_widget.dart';
+import '../edit_contact_page/edit_contact_page.dart';
 
 class SingleContactPage extends StatefulWidget {
   const SingleContactPage({
@@ -41,6 +42,7 @@ class _SingleContactPageState extends State<SingleContactPage> {
             builder: (_, state) {
               if (state.state != null) {
                 return IconButton(
+                  tooltip: S.of(context).edit,
                   onPressed: () async {
                     final updatedContact = await Navigator.pushNamed(
                       context,
@@ -51,7 +53,6 @@ class _SingleContactPageState extends State<SingleContactPage> {
                       _bloc.add(
                         UpdateContactEvent(updatedContact as ContactModel),
                       );
-                      _bloc.add(GetContactByIdEvent(updatedContact.id));
                     }
                   },
                   icon: const Icon(Icons.edit),

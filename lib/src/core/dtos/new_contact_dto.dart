@@ -22,4 +22,20 @@ class NewContactDTO {
       _$NewContactDTOFromJson(json);
 
   Map<String, dynamic> toJson() => _$NewContactDTOToJson(this);
+
+  NewContactDTO copyWith({
+    String? firstName,
+    String? lastName,
+    String? phoneNumber,
+    String? email,
+    String? avatarUrl,
+  }) {
+    return NewContactDTO(
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      email: email ?? this.email,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+    );
+  }
 }

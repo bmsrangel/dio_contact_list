@@ -59,4 +59,13 @@ class SqfliteContactsRepositoryImpl implements ContactsRepository {
       return null;
     }
   }
+
+  @override
+  Future<void> deleteOne(Object id) async {
+    await _db.delete(
+      'contacts',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }

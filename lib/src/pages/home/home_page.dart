@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../generated/l10n.dart';
-import '../core/blocs/contacts/contacts_bloc.dart';
-import '../core/dtos/new_contact_dto.dart';
-import '../core/widgets/profile_image_widget.dart';
-import 'edit_contact_page.dart';
-import 'single_contact_page.dart';
+import '../../../generated/l10n.dart';
+import '../../core/blocs/contacts/contacts_bloc.dart';
+import '../../core/dtos/new_contact_dto.dart';
+import '../../core/widgets/profile_image_widget.dart';
+import '../edit_contact_page/edit_contact_page.dart';
+import '../single_contact_page/single_contact_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -64,11 +64,21 @@ class _HomePageState extends State<HomePage> {
                       imagePath: contact.avatarUrl,
                       radius: 18.0,
                     ),
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      SingleContactPage.route,
-                      arguments: contact.id,
+                    trailing: IconButton(
+                      onPressed: () {
+                        _bloc.add(DeleteContactEvent(contact));
+                      },
+                      icon: const Icon(Icons.delete),
+                      tooltip: S.of(context).delete,
                     ),
+                    onTap: () async {
+                      await Navigator.pushNamed(
+                        context,
+                        SingleContactPage.route,
+                        arguments: contact.id,
+                      );
+                      _bloc.add(const GetAllContactsEvent());
+                    },
                   );
                 },
               );
@@ -84,9 +94,9 @@ class _HomePageState extends State<HomePage> {
           );
           if (newContactDTO != null) {
             _bloc.add(CreateContactEvent(newContactDTO as NewContactDTO));
-            _bloc.add(const GetAllContactsEvent());
           }
         },
+        tooltip: S.of(context).add,
         child: const Icon(Icons.add),
       ),
     );

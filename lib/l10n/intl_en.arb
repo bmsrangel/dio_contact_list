@@ -7,5 +7,11 @@
   "phoneNumber": "Phone Number",
   "editPageRequiredField": "This field is mandatory",
   "editPageInvalidEmail": "This e-mail address is not valid",
-  "save": "Save"
+  "save": "Save",
+  "gallery": "Gallery",
+  "camera": "Camera",
+  "removeImage": "Remove image",
+  "delete": "Delete",
+  "add": "Add",
+  "edit": "Edit"
 }

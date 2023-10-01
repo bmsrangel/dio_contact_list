@@ -13,3 +13,9 @@ final class CreateContactEvent implements ContactsEvent {
 
   final NewContactDTO newContactDTO;
 }
+
+final class DeleteContactEvent implements ContactsEvent {
+  const DeleteContactEvent(this.contact);
+
+  final ContactModel contact;
+}

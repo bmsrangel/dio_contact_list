@@ -50,5 +50,9 @@
 		<string>en</string>
 		<string>pt_BR</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Required to take profile pictures</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Required to select profile pictures from library</string>
 </dict>
 </plist>

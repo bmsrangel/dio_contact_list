@@ -22,6 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("Adicionar"),
+        "camera": MessageLookupByLibrary.simpleMessage("Câmera"),
+        "delete": MessageLookupByLibrary.simpleMessage("Excluir"),
+        "edit": MessageLookupByLibrary.simpleMessage("Editar"),
         "editContactPageTitle":
             MessageLookupByLibrary.simpleMessage("Novo Contato"),
         "editPageInvalidEmail":
@@ -29,12 +33,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "editPageRequiredField":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
         "firstName": MessageLookupByLibrary.simpleMessage("Nome"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Galeria"),
         "homePageNoContactsRegistered":
             MessageLookupByLibrary.simpleMessage("Nenhum contato registrado"),
         "homePageTitle":
             MessageLookupByLibrary.simpleMessage("Lista de Contatos"),
         "lastName": MessageLookupByLibrary.simpleMessage("Sobrenome"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Telefone"),
+        "removeImage": MessageLookupByLibrary.simpleMessage("Excluir imagem"),
         "save": MessageLookupByLibrary.simpleMessage("Salvar")
       };
 }

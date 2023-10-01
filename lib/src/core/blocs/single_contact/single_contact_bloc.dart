@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../dtos/new_contact_dto.dart';
 import '../../models/contact_model.dart';
-import '../../repositories/contacts/contacts_repository.dart';
+import '../../services/contacts_service/contacts_service.dart';
 
 part 'single_contact_event.dart';
 part 'single_contact_state.dart';
@@ -12,27 +12,28 @@ part 'single_contact_state.dart';
 class SingleContactBloc extends Bloc<SingleContactEvent, SingleContactState> {
   SingleContactBloc(
     @factoryParam SingleContactState initialState,
-    this._repository,
+    this._service,
   ) : super(initialState) {
     on<AddContactEvent>(_onAddContactEvent);
     on<GetContactByIdEvent>(_onGetContactByIdEvent);
     on<UpdateContactEvent>(_onUpdateContactEvent);
   }
 
-  final ContactsRepository _repository;
+  final ContactsService _service;
 
   Future<void> _onAddContactEvent(AddContactEvent event, emit) async {
     emit(state.copyWith(isLoading: true));
-    final newContact = await _repository.insertOne(event.newContactDTO);
+    final newContact = await _service.createContact(event.newContactDTO);
     emit(state.copyWith(isLoading: false, state: newContact));
   }
 
   Future<void> _onGetContactByIdEvent(GetContactByIdEvent event, emit) async {
-    final contact = await _repository.findById(event.id);
+    final contact = await _service.getContactById(event.id);
     emit(state.copyWith(isLoading: false, state: contact));
   }
 
   Future<void> _onUpdateContactEvent(UpdateContactEvent event, emit) async {
-    await _repository.updateOne(event.contactModel);
+    await _service.updateContact(event.contactModel);
+    add(GetContactByIdEvent(event.contactModel.id));
   }
 }

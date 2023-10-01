@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../generated/l10n.dart';
-import '../core/dtos/new_contact_dto.dart';
-import '../core/models/contact_model.dart';
-import '../core/widgets/custom_text_form_field_widget.dart';
-import '../core/widgets/profile_image_widget.dart';
+import '../../../generated/l10n.dart';
+import '../../core/dtos/new_contact_dto.dart';
+import '../../core/models/contact_model.dart';
+import '../../core/widgets/custom_text_form_field_widget.dart';
+import '../../core/widgets/profile_image_widget.dart';
+import 'edit_contact_controller.dart';
 
 class EditContactPage extends StatefulWidget {
   const EditContactPage({
     super.key,
     required this.title,
     this.contactModel,
+    required this.controller,
   });
 
   static const String route = '/edit';
 
   final String title;
   final ContactModel? contactModel;
+  final EditContactController controller;
 
   @override
   State<EditContactPage> createState() => _EditContactPageState();
@@ -25,14 +28,13 @@ class EditContactPage extends StatefulWidget {
 
 class _EditContactPageState extends State<EditContactPage> {
   ContactModel? get _contact => widget.contactModel;
+  EditContactController get _controller => widget.controller;
 
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _firstName$;
   late final TextEditingController _lastName$;
   late final TextEditingController _phone$;
   late final TextEditingController _email$;
-
-  final ValueNotifier<String?> _avatarUrl = ValueNotifier(null);
 
   @override
   void initState() {
@@ -42,7 +44,7 @@ class _EditContactPageState extends State<EditContactPage> {
     _lastName$ = TextEditingController(text: _contact?.lastName);
     _phone$ = TextEditingController(text: _contact?.phoneNumber);
     _email$ = TextEditingController(text: _contact?.email);
-    _avatarUrl.value = _contact?.avatarUrl;
+    _controller.avatarUrl.value = _contact?.avatarUrl;
   }
 
   @override
@@ -68,20 +70,40 @@ class _EditContactPageState extends State<EditContactPage> {
           child: ListView(
             children: [
               ValueListenableBuilder<String?>(
-                valueListenable: _avatarUrl,
+                valueListenable: _controller.avatarUrl,
                 builder: (_, avatarUrl, __) => ProfileImageWidget(
                   imagePath: avatarUrl,
                   radius: 50.0,
                   onPressed: () {
                     showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                       context: context,
-                      builder: (context) => const Wrap(
+                      builder: (context) => Wrap(
                         children: [
                           ListTile(
-                            title: Text('Camera'),
+                            title: Text(S.of(context).camera),
+                            onTap: () {
+                              _controller.getPictureFromCamera().then((_) {
+                                Navigator.pop(context);
+                              });
+                            },
                           ),
                           ListTile(
-                            title: Text('Gallery'),
+                            title: Text(S.of(context).gallery),
+                            onTap: () {
+                              _controller.getPictureFromGallery().then((_) {
+                                Navigator.pop(context);
+                              });
+                            },
+                          ),
+                          ListTile(
+                            title: Text(S.of(context).removeImage),
+                            onTap: () {
+                              _controller.clearAvatarUrl();
+                              Navigator.pop(context);
+                            },
                           ),
                         ],
                       ),
@@ -127,7 +149,7 @@ class _EditContactPageState extends State<EditContactPage> {
                         lastName: _lastName$.text,
                         phoneNumber: _phone$.text,
                         email: _email$.text,
-                        avatarUrl: _avatarUrl.value,
+                        avatarUrl: _controller.avatarUrl.value,
                       );
                       Navigator.pop(context, newContactDTO);
                     } else {
@@ -136,7 +158,7 @@ class _EditContactPageState extends State<EditContactPage> {
                         lastName: _lastName$.text,
                         phoneNumber: _phone$.text,
                         email: _email$.text,
-                        avatarUrl: _avatarUrl.value,
+                        avatarUrl: _controller.avatarUrl.value ?? '',
                       );
                       Navigator.pop(context, updatedContact);
                     }
