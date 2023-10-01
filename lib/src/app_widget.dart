@@ -31,7 +31,7 @@ class AppWidget extends StatelessWidget {
       initialRoute: HomePage.route,
       routes: {
         HomePage.route: (context) => HomePage(
-              title: 'Contact List App',
+              title: S.of(context).homePageTitle,
               contactsBloc: GetIt.I.get<ContactsBloc>(),
             ),
         SingleContactPage.route: (context) {
@@ -50,7 +50,7 @@ class AppWidget extends StatelessWidget {
           final contactModel =
               ModalRoute.of(context)!.settings.arguments as ContactModel?;
           return EditContactPage(
-            title: 'New Contact',
+            title: S.of(context).editContactPageTitle,
             contactModel: contactModel,
           );
         },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
+import '../../generated/l10n.dart';
 import '../core/dtos/new_contact_dto.dart';
 import '../core/models/contact_model.dart';
 import '../core/widgets/custom_text_form_field_widget.dart';
@@ -71,33 +72,50 @@ class _EditContactPageState extends State<EditContactPage> {
                 builder: (_, avatarUrl, __) => ProfileImageWidget(
                   imagePath: avatarUrl,
                   radius: 50.0,
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => const Wrap(
+                        children: [
+                          ListTile(
+                            title: Text('Camera'),
+                          ),
+                          ListTile(
+                            title: Text('Gallery'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 16.0),
               CustomTextFormField(
                 controller: _firstName$,
-                labelText: 'First Name',
-                validator: Validatorless.required('This field is mandatory'),
+                labelText: S.of(context).firstName,
+                validator: Validatorless.required(
+                  S.of(context).editPageRequiredField,
+                ),
                 textInputAction: TextInputAction.next,
               ),
               CustomTextFormField(
                 controller: _lastName$,
-                labelText: 'Last Name',
+                labelText: S.of(context).lastName,
                 textInputAction: TextInputAction.next,
               ),
               CustomTextFormField(
                 controller: _phone$,
-                labelText: 'Phone Number',
+                labelText: S.of(context).phoneNumber,
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
               ),
               CustomTextFormField(
                 controller: _email$,
+                textCapitalization: TextCapitalization.none,
                 labelText: 'E-mail',
                 keyboardType: TextInputType.emailAddress,
                 validator:
-                    Validatorless.email('This e-mail address is not valid'),
+                    Validatorless.email(S.of(context).editPageInvalidEmail),
               ),
               const SizedBox(height: 24.0),
               ElevatedButton.icon(
@@ -125,7 +143,7 @@ class _EditContactPageState extends State<EditContactPage> {
                   }
                 },
                 icon: const Icon(Icons.save),
-                label: const Text('Save'),
+                label: Text(S.of(context).save),
               ),
             ],
           ),

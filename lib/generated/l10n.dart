@@ -49,6 +49,96 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Contact List`
+  String get homePageTitle {
+    return Intl.message(
+      'Contact List',
+      name: 'homePageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Contact`
+  String get editContactPageTitle {
+    return Intl.message(
+      'New Contact',
+      name: 'editContactPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No contacts registered yet`
+  String get homePageNoContactsRegistered {
+    return Intl.message(
+      'No contacts registered yet',
+      name: 'homePageNoContactsRegistered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Name`
+  String get firstName {
+    return Intl.message(
+      'First Name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message(
+      'Last Name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is mandatory`
+  String get editPageRequiredField {
+    return Intl.message(
+      'This field is mandatory',
+      name: 'editPageRequiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This e-mail address is not valid`
+  String get editPageInvalidEmail {
+    return Intl.message(
+      'This e-mail address is not valid',
+      name: 'editPageInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

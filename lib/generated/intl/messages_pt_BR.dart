@@ -21,5 +21,20 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pt_BR';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "editContactPageTitle":
+            MessageLookupByLibrary.simpleMessage("Novo Contato"),
+        "editPageInvalidEmail":
+            MessageLookupByLibrary.simpleMessage("Endereço de e-mail inválido"),
+        "editPageRequiredField":
+            MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
+        "firstName": MessageLookupByLibrary.simpleMessage("Nome"),
+        "homePageNoContactsRegistered":
+            MessageLookupByLibrary.simpleMessage("Nenhum contato registrado"),
+        "homePageTitle":
+            MessageLookupByLibrary.simpleMessage("Lista de Contatos"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Sobrenome"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Telefone"),
+        "save": MessageLookupByLibrary.simpleMessage("Salvar")
+      };
 }

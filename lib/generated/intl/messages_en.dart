@@ -21,5 +21,19 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "editContactPageTitle":
+            MessageLookupByLibrary.simpleMessage("New Contact"),
+        "editPageInvalidEmail": MessageLookupByLibrary.simpleMessage(
+            "This e-mail address is not valid"),
+        "editPageRequiredField":
+            MessageLookupByLibrary.simpleMessage("This field is mandatory"),
+        "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "homePageNoContactsRegistered":
+            MessageLookupByLibrary.simpleMessage("No contacts registered yet"),
+        "homePageTitle": MessageLookupByLibrary.simpleMessage("Contact List"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "save": MessageLookupByLibrary.simpleMessage("Save")
+      };
 }

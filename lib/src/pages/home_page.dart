@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../generated/l10n.dart';
 import '../core/blocs/contacts/contacts_bloc.dart';
 import '../core/dtos/new_contact_dto.dart';
 import '../core/widgets/profile_image_widget.dart';
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
             } else if (state.error != null) {
               return Text(state.error!);
             } else if (state.state.isEmpty) {
-              return const Text('No contacts registered yet');
+              return Text(S.of(context).homePageNoContactsRegistered);
             } else {
               return ListView.separated(
                 itemCount: state.state.length,

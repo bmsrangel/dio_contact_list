@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.textInputAction,
     this.controller,
+    this.textCapitalization,
   });
 
   final String? labelText;
@@ -15,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputAction? textInputAction;
   final TextEditingController? controller;
+  final TextCapitalization? textCapitalization;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: TextFormField(
         controller: controller,
+        textCapitalization: textCapitalization ?? TextCapitalization.words,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           labelText: labelText,

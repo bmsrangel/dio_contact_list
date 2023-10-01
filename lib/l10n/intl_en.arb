@@ -1,1 +1,11 @@
-{}
+{
+  "homePageTitle": "Contact List",
+  "editContactPageTitle": "New Contact",
+  "homePageNoContactsRegistered": "No contacts registered yet",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phoneNumber": "Phone Number",
+  "editPageRequiredField": "This field is mandatory",
+  "editPageInvalidEmail": "This e-mail address is not valid",
+  "save": "Save"
+}
