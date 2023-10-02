@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../generated/l10n.dart';
 import '../../core/blocs/single_contact/single_contact_bloc.dart';
 import '../../core/models/contact_model.dart';
+import '../../core/widgets/contact_info_widget.dart';
 import '../../core/widgets/profile_image_widget.dart';
 import '../edit_contact_page/edit_contact_page.dart';
 
@@ -106,46 +106,14 @@ class _SingleContactPageState extends State<SingleContactPage> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  state.state!.phoneNumber != null &&
-                                          state.state!.phoneNumber!.isNotEmpty
-                                      ? GestureDetector(
-                                          onTap: () {
-                                            final uri = Uri(
-                                              scheme: 'tel',
-                                              path: state.state!.phoneNumber,
-                                            );
-                                            launchUrl(
-                                              uri,
-                                            );
-                                          },
-                                          child: Text(
-                                            state.state!.phoneNumber!,
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        )
-                                      : const SizedBox.shrink(),
-                                  state.state!.email != null &&
-                                          state.state!.email!.isNotEmpty
-                                      ? GestureDetector(
-                                          onTap: () {
-                                            final uri = Uri(
-                                              scheme: 'mailto',
-                                              path: state.state!.email,
-                                            );
-                                            launchUrl(
-                                              uri,
-                                            );
-                                          },
-                                          child: Text(
-                                            state.state!.email!,
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        )
-                                      : const SizedBox.shrink(),
+                                  ContactInfoWidget(
+                                    schema: 'tel',
+                                    contactInfo: state.state!.phoneNumber,
+                                  ),
+                                  ContactInfoWidget(
+                                    schema: 'mailto',
+                                    contactInfo: state.state!.email,
+                                  ),
                                 ],
                               ),
                             ),
