@@ -54,5 +54,11 @@
 	<string>Required to take profile pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Required to select profile pictures from library</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+		<string>call</string>
+		<string>mailto</string>
+	</array>
 </dict>
 </plist>

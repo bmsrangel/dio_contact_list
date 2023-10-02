@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../generated/l10n.dart';
 import '../../core/blocs/single_contact/single_contact_bloc.dart';
@@ -107,19 +108,41 @@ class _SingleContactPageState extends State<SingleContactPage> {
                                   ),
                                   state.state!.phoneNumber != null &&
                                           state.state!.phoneNumber!.isNotEmpty
-                                      ? Text(
-                                          state.state!.phoneNumber!,
-                                          style: const TextStyle(
-                                            color: Colors.white,
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            final uri = Uri(
+                                              scheme: 'tel',
+                                              path: state.state!.phoneNumber,
+                                            );
+                                            launchUrl(
+                                              uri,
+                                            );
+                                          },
+                                          child: Text(
+                                            state.state!.phoneNumber!,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         )
                                       : const SizedBox.shrink(),
                                   state.state!.email != null &&
                                           state.state!.email!.isNotEmpty
-                                      ? Text(
-                                          state.state!.email!,
-                                          style: const TextStyle(
-                                            color: Colors.white,
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            final uri = Uri(
+                                              scheme: 'mailto',
+                                              path: state.state!.email,
+                                            );
+                                            launchUrl(
+                                              uri,
+                                            );
+                                          },
+                                          child: Text(
+                                            state.state!.email!,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         )
                                       : const SizedBox.shrink(),
